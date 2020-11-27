@@ -1,0 +1,14 @@
+.idea/
+*.iml
+out/
+
+# Ignore Gradle project-specific cache directory
+.gradle
+gradlew.bat
+gradlew
+gradle/
+
+# Ignore Gradle build output directory
+build/
+
+junit-4.12.jar

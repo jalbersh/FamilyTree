@@ -8,7 +8,6 @@ fun main(args: Array<String>) {
         "null,0,grandpa|0,1,son|0,2,daughter|1,3,grandkid|1,4,grandkid|2,5,grandkid|5,6,greatgrandkid"
     }
     val instance = FamilyTree(input)
-    instance.loadFamilyTree()
     val output = instance.traverseTree(instance.root)
     println(output)
 }
@@ -17,6 +16,9 @@ data class FamilyTree(val input: String) {
     public var inputStr: String = input
     public var root: Node = Node("null",-1,"null")
 
+    init {
+        loadFamilyTree()
+    }
     fun traverseTree(rootNode: Node): String {
         var output:String = ""
         if (rootNode.id != -1L) {

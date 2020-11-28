@@ -8,7 +8,7 @@ The given string has PIPE(|) delimited nodes that represent family members in a 
 "null,0,grandpa|0,1,son|0,2,daughter|1,3,grandkid|1,4,grandkid|2,5,grandkid|5,6,greatgrandkid"
 
 **Note**<br />
-If not string argument is given, the sample input above is assumed.
+If not string argument is given, the sample input above is used as a default.
 
 The hierarchical result is displayed on a separate line with each person(with id) in the tree, with it's parent id
 

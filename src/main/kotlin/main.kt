@@ -1,8 +1,5 @@
 import java.util.*
 
-
-// "null,0,grandpa|0,1,son|0,2,daugther|1,3,grandkid|1,4,grandkid|2,5,grandkid|5,6,greatgrandkid"
-
 fun main(args: Array<String>) {
     val input = if (!args.isEmpty() && args.size > 0) args[0] else {
         "null,0,grandpa|0,1,son|0,2,daughter|1,3,grandkid|1,4,grandkid|2,5,grandkid|5,6,greatgrandkid"

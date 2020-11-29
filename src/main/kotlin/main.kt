@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val output = instance.traverseTree(instance.root)
     println(output)
 }
-
+// Main FamilyTree class
 data class FamilyTree(val input: String) {
     public var inputStr: String = input
     public var root: Node = Node("null",-1,"null")
@@ -37,13 +37,14 @@ data class FamilyTree(val input: String) {
     }
     public fun addNodeToTree(rootNode: Node, node: Node) {
         if (node.parent_id == "null") {
-            this.root = node;
-            this.root.parent = null;
+            this.root = node
+            this.root.parent = null
         } else if (convertToLong(node.parent_id) != rootNode.id ) {
             if (rootNode.children.size != 0) for (ch in rootNode.children) addNodeToTree(ch,node)
         }
         else rootNode.addChild(node)
     }
+    // Person Node inner class
     class Node(val parent_id: String, private val node_id: Long, private val node_name: String) {
         var parent : Node? = null
         var children: MutableList<Node> = ArrayList()

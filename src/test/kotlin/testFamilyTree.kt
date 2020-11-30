@@ -6,13 +6,13 @@ class TestFamilyTree {
     @Test
     fun whenNull_convertReturnsMinus1() {
         val familyTree = FamilyTree("1|2|3")
-        Assert.assertEquals(-1L,familyTree.convertToLong(("null")))
+        Assert.assertEquals(null,familyTree.convertToLong(("null")))
     }
 
     @Test
     fun whenLong_convertReturns_long() {
         val familyTree = FamilyTree("0,1,2")
-        Assert.assertEquals(3,familyTree.convertToLong("3"))
+        Assert.assertEquals(3L,familyTree.convertToLong("3"))
     }
 
     @Test
@@ -29,8 +29,8 @@ class TestFamilyTree {
         val nodes = familyTree.parseNodesFromInput()
         Assert.assertEquals(1,  nodes.size)
         val node = familyTree.parseNodeInfo(nodes.get(0))
-        Assert.assertEquals("null",node.parent_id)
-        Assert.assertEquals(2,node.id)
+        Assert.assertEquals(null,node.parent_id)
+        Assert.assertEquals(2L,node.id)
         Assert.assertEquals("daughter", node.name)
     }
 

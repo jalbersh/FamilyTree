@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 // Main FamilyTree class
 data class FamilyTree(val input: String) {
     public var inputStr: String = input
-    public var root: Node = Node("null",-1,"null")
+    public var root: Node = Node(null,-1,"null")
 
     init {
         loadFamilyTree()
@@ -29,27 +29,27 @@ data class FamilyTree(val input: String) {
         val nodes = this.parseNodesFromInput()
         nodes.forEach {this.addNodeToTree(this.root, this.parseNodeInfo(it))}
     }
-    public fun convertToLong(s: String) = try {if (s == "null") -1L else s.toLong()} catch (ex: NumberFormatException){-1L}
+    public fun convertToLong(s: String) : Long? = try {if (s == "null") null else s.toLong()} catch (ex: NumberFormatException){null}
     public fun parseNodeInfo(info: String): Node {
         val parts: List<String> = info.split(",").map { it -> it.trim() }
-        if (parts.size == 3) { return Node(parts[0], convertToLong(parts[1]), parts[2]) }
-        return Node("null",-1,"null")
+        if (parts.size == 3) { return Node(convertToLong(parts[0]), convertToLong(parts[1]), parts[2]) }
+        return Node(null,-1,"null")
     }
     public fun addNodeToTree(rootNode: Node, node: Node) {
-        if (node.parent_id == "null") {
+        if (node.parent_id == null) {
             this.root = node
             this.root.parent = null
-        } else if (convertToLong(node.parent_id) != rootNode.id ) {
+        } else if (node.parent_id != rootNode.id ) {
             if (rootNode.children.size != 0) for (ch in rootNode.children) addNodeToTree(ch,node)
         }
         else rootNode.addChild(node)
     }
     // Person Node inner class
-    class Node(val parent_id: String, private val node_id: Long, private val node_name: String) {
+    class Node(val parent_id: Long?, private val node_id: Long?, private val node_name: String) {
         var parent : Node? = null
         var children: MutableList<Node> = ArrayList()
         var name : String = node_name
-        var id : Long = node_id
+        var id : Long? = node_id
 
         fun addChild(childNode: Node) {
             childNode.parent=this

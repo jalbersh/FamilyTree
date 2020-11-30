@@ -4,9 +4,15 @@ import org.junit.Assert
 class TestFamilyTree {
 
     @Test
-    fun whenNull_convertReturnsMinus1() {
+    fun whenNullString_convertReturnsNull() {
         val familyTree = FamilyTree("1|2|3")
         Assert.assertEquals(null,familyTree.convertToLong(("null")))
+    }
+
+    @Test
+    fun whenNull_convertReturnsNull() {
+        val familyTree = FamilyTree("1|2|3")
+        Assert.assertEquals(null,familyTree.convertToLong((null)))
     }
 
     @Test

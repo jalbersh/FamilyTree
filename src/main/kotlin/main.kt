@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 // Main FamilyTree class
 data class FamilyTree(val input: String) {
     public var inputStr: String = input
-    public var root: Node = Node(null,-1,"null")
+    public var root: Node = Node(null,null,null)
 
     init {
         loadFamilyTree()
@@ -29,11 +29,11 @@ data class FamilyTree(val input: String) {
         val nodes = this.parseNodesFromInput()
         nodes.forEach {this.addNodeToTree(this.root, this.parseNodeInfo(it))}
     }
-    public fun convertToLong(s: String) : Long? = try {if (s == "null") null else s.toLong()} catch (ex: NumberFormatException){null}
+    public fun convertToLong(s: String?) : Long? = try { s?.toLong() } catch (ex: NumberFormatException){null}
     public fun parseNodeInfo(info: String): Node {
         val parts: List<String> = info.split(",").map { it -> it.trim() }
         if (parts.size == 3) { return Node(convertToLong(parts[0]), convertToLong(parts[1]), parts[2]) }
-        return Node(null,-1,"null")
+        return Node(null,null,null)
     }
     public fun addNodeToTree(rootNode: Node, node: Node) {
         if (node.parent_id == null) {
@@ -45,10 +45,10 @@ data class FamilyTree(val input: String) {
         else rootNode.addChild(node)
     }
     // Person Node inner class
-    class Node(val parent_id: Long?, private val node_id: Long?, private val node_name: String) {
+    class Node(val parent_id: Long?, private val node_id: Long?, private val node_name: String?) {
         var parent : Node? = null
         var children: MutableList<Node> = ArrayList()
-        var name : String = node_name
+        var name : String? = node_name
         var id : Long? = node_id
 
         fun addChild(childNode: Node) {

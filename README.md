@@ -42,6 +42,5 @@ person( 1 ): son with parent(grandpa)<br />
 person( 3 ): grandkid with parent(son)<br />
 person( 4 ): grandkid with parent(son)<br />
 person( 2 ): daughter with parent(grandpa)<br />
-person(2): daughter with parent(0)<br />
 
  

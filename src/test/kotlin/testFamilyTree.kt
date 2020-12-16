@@ -68,8 +68,8 @@ class TestFamilyTree {
         familyTree.loadFamilyTree()
         val output = familyTree.traverseTree(familyTree.root)
         println(output)
-        Assert.assertTrue(output.contains("person(0): father with parent(null)"))
-        Assert.assertTrue(output.contains("person(1): son with parent(0"))
+        Assert.assertTrue(output.contains("person( 0 ): father with parent(no parent given)"))
+        Assert.assertTrue(output.contains("person( 1 ): son with parent(father)"))
     }
 
 }

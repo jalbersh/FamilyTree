@@ -19,10 +19,32 @@ data class FamilyTree(val input: String) {
     fun traverseTree(rootNode: Node): String {
         var output:String = ""
         if (rootNode.id != -1L) {
-            output += "person("+rootNode.id.toString() + "): " + rootNode.name + " with parent(" + rootNode.parent_id + ")\n"
+            output += output(rootNode)
         }
         if (rootNode.children.size != 0) for (ch in rootNode.children) output += traverseTree(ch)
         return output
+    }
+    private fun getParentName(rootNode: Node, parent: Long?): String {
+        var output:String = ""
+        if (rootNode.id == parent) {
+//            println("FOUND it with ${rootNode.id.toString()} from $parent")
+            output = rootNode.name.toString()
+            if (output == "null") output = "no parent given"
+        }
+        if (rootNode.parent?.id == parent) {
+//            println("FOUND it with ${rootNode.parent?.id.toString()} from $parent")
+            output = rootNode.parent?.name.toString()
+            if (output == "null") output = "no parent given"
+        }
+        if (rootNode.children.size != 0) for (ch in rootNode.children) {
+            val output1: String = getParentName(ch, parent)
+            if (output1.isNotEmpty()) output = output1;
+        }
+        return output
+    }
+    private fun output(rootNode: Node): String {
+        val name = getParentName(root,rootNode.parent_id)
+        return "person( ${rootNode.id.toString()} ): ${rootNode.name} with parent($name)\n"
     }
     public fun parseNodesFromInput(): List<String> = input.split("|")
     public fun loadFamilyTree() {
@@ -50,12 +72,10 @@ data class FamilyTree(val input: String) {
         var children: MutableList<Node> = ArrayList()
         var name : String? = node_name
         var id : Long? = node_id
-
         fun addChild(childNode: Node) {
             childNode.parent=this
             this.children.add(childNode)
         }
-
         init {
             name = node_name
         }

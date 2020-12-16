@@ -13,13 +13,13 @@ If not string argument is given, the sample input above is used as a default.
 The hierarchical result is displayed on a separate line with each person(with id) in the tree, with it's parent id
 
 **Sample output:**<br />
-person(0): grandpa with parent(null)<br />
-person(1): son with parent(0)<br />
-person(3): grandkid with parent(1)<br />
-person(4): grandkid with parent(1)<br />
-person(2): daughter with parent(0)<br />
-person(5): grandkid with parent(2)<br />
-person(6): greatgrandkid with parent(5)<br />
+person( 0 ): grandpa with parent(no parent given)<br />
+person( 1 ): son with parent(grandpa)<br />
+person( 3 ): grandkid with parent(son)<br />
+person( 4 ): grandkid with parent(son)<br />
+person( 2 ): daughter with parent(grandpa)<br />
+person( 5 ): grandkid with parent(daughter)<br />
+person( 6 ): greatgrandkid with parent(grandkid)<br />
 
 **To install kotlin:**<br />
   curl -s "https://get.sdkman.io" | bash<br />
@@ -37,10 +37,11 @@ gradle test or ./gradlew test
 java -jar family-tree.jar "null,0,grandpa|0,1,son|0,2,daughter|1,3,grandkid|1,4,grandkid"<br />
 
 **Outputs**<br />
-person(0): grandpa with parent(null)<br />
-person(1): son with parent(0)<br />
-person(3): grandkid with parent(1)<br />
-person(4): grandkid with parent(1)<br />
+person( 0 ): grandpa with parent(no parent given)
+person( 1 ): son with parent(grandpa)<br />
+person( 3 ): grandkid with parent(son)<br />
+person( 4 ): grandkid with parent(son)<br />
+person( 2 ): daughter with parent(grandpa)<br />
 person(2): daughter with parent(0)<br />
 
  
